@@ -1,0 +1,26 @@
+// prisma/schema.prisma
+datasource db {
+  provider = "postgresql" // ou "mysql", "sqlite", etc.
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String @unique
+}
+
+model Product {
+  id        Int     @id @default(autoincrement())
+  name         String
+  unit         String
+  price        Float
+  category     String
+  quantity     Int
+  description  String
+  image        String
+}
