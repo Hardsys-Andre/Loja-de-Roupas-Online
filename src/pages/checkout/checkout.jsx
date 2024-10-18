@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../CartContext.jsx";
-import Logo from "../../assets/logo-tana-cesta.png";
+import Logo from "../../assets/logo-loja.jpg";
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -86,8 +86,8 @@ const Checkout = () => {
       <div className="flex md:flex-row flex-col justify-center md:gap-16 items-center h-[250px]">
         <img
           src={Logo}
-          alt="Logotipo Tá na Cesta"
-          className="md:w-[250px] w-[200px]"
+          alt="Logotipo Juliana Modas"
+          className="md:w-[250px] w-[200px] rounded-[125px] border-2 border-[#8f6f6e]"
         />
         <h2 className="md:text-6xl text-4xl font-semibold font-caveat mb-6">
           Checkout

@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Button from "../../components/Button/index";
 import User from "../testeDB/UserList.jsx";
 import Product from "../testeDB/productList.jsx";
-import Logo from "../../assets/logo-tana-cesta.png";
+import Logo from "../../assets/logo-loja.jpg";
 
 function AdminPage() {
   // Estados para os usuários
@@ -70,8 +70,8 @@ function AdminPage() {
     <div className=''>
       <ToastContainer />
       <div className='flex flex-row gap-4 justify-center items-center'>
-        <img className='w-[200px]'
-          src={Logo} alt="Logotipo Ta na Cesta" />
+        <img className='w-[200px] rounded-[125px] border-2 border-[#8f6f6e]'
+          src={Logo} alt="Logotipo Juliana Modas" />
         <span className='text-4xl font-bold'>Área do Administrador</span>
       </div>
      <div className='flex flex-col mt-[50px] items-center'>

@@ -11,8 +11,8 @@ import { destaques } from "../../Data";
 const Destaques = () => {
   const { addToCart } = useContext(CartContext);
   return (
-    <div className="flex flex-col w-full md:w-full mt-6 pb-11 md:mt-10 lg:mt-20 items-center bg-darkerGreen">
-      <div className="bg-gradient-to-r from-primaryGreen via-primaryGreen to-secondaryGreen w-full font-outfit font-semibold py-5 text-whiteNormal text-center">
+    <div className="flex flex-col w-full md:w-full mt-6 pb-11 md:mt-10 lg:mt-20 items-center bg-[#482f2a]">
+      <div className="bg-gradient-to-r from-[#8f6f6e] via-[#8f6f6e] to-[#482f2a] w-full font-outfit font-semibold py-5 text-whiteNormal text-center">
         <ScrollingBanner />
       </div>
       <div className="flex flex-col w-[90%] mt-6 md:mt-10 lg:mt-15">

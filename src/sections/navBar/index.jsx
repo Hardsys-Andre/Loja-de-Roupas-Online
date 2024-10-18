@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../assets/logo-tana-cesta.png";
+import Logo from "../../assets/logo-loja.jpg";
 import Button from "../../components/Button/index";
 import Searchbar from "../../components/searchBar/index";
 import { TiShoppingCart } from "react-icons/ti";
@@ -45,7 +45,8 @@ const NavbarComponent = () => {
       className="flex flex-row-reverse md:flex-row gap-2 w-full md:w-[95%] justify-between items-center p-4"
     >
       <div className="hidden lg:block w-[250px]">
-        <img src={Logo} alt="Logo Tá na Cesta" />
+        <img className="rounded-[125px] border-2 border-[#8f6f6e]"
+        src={Logo} alt="Logo Juliana Modas" />
       </div>
       <div className="md:hidden relative flex justify-start md:w-full">
         <button onClick={toggleMenu} className="text-3xl">

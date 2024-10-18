@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../../CartContext.jsx";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../assets/logo-tana-cesta.png";
+import Logo from "../../assets/logo-loja.jpg";
 import { FaPlus } from "react-icons/fa";
 
 const Cart = () => {
@@ -38,8 +38,8 @@ const Cart = () => {
       <div className="flex flex-row justify-center gap-10 items-center h-[250px]">
         <img
           src={Logo}
-          alt="Logotipo Tá na Cesta"
-          className="md:w-[250px] w-[200px]"
+          alt="Logotipo Juliana Modas"
+          className="md:w-[250px] w-[200px] rounded-[125px] border-2 border-[#8f6f6e]"
         />
       </div>
       <div className="flex flex-col-reverse md:flex-row justify-between md:items-center">

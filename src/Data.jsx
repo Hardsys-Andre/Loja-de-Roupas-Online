@@ -1,31 +1,37 @@
 export const destaques = [
   {
     id: 1,
-    name: 'Tomate',
-    price: 6.00,
-    unit: '(kg)',
+    name: 'Vestido',
+    price: 160.00,
     image: 'https://raw.githubusercontent.com/Hardsys-Andre/HackathonEcommerce/main/src/frontend/src/assets/tomate.png',
-    category: 'fruta',
+    category: 'vestido',
     description:
       'Perfeito para saladas e molhos. Sabor fresco e qualidade em cada mordida.',
   },
   {
     id: 2,
-    name: 'Alface',
-    price: 5.00,
-    unit: '(unid)',
+    name: 'Macaquinho',
+    price: 98.00,
     image: 'https://raw.githubusercontent.com/Hardsys-Andre/HackathonEcommerce/main/src/frontend/src/assets/alface.png',
-    category: 'Hortaliça',
+    category: 'macaquinho',
     description:
       'Crocrante e ideal para saladas e acompanhamentos. Frescor garantido!',
   },
   {
     id: 3,
-    name: 'Laranja',
-    price: 9.00,
-    unit: '(kg)',
+    name: 'Pijama',
+    price: 79.00,
     image: 'https://raw.githubusercontent.com/Hardsys-Andre/HackathonEcommerce/main/src/frontend/src/assets/laranja.png',
-    category: 'Fruta',
+    category: 'pijama',
+    description:
+      'Docinha feito mel, ideal para um suco bem geladinho.',
+  },
+  {
+    id: 4,
+    name: 'Plus Size',
+    price: 190.00,
+    image: 'https://raw.githubusercontent.com/Hardsys-Andre/HackathonEcommerce/main/src/frontend/src/assets/laranja.png',
+    category: 'plus-size',
     description:
       'Docinha feito mel, ideal para um suco bem geladinho.',
   },
