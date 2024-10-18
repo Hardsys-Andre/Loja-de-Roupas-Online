@@ -29,23 +29,23 @@ const ScrollingBanner = () => {
       >
         <span>
           {" "}
-          PEDIDO ONLINE - ENTREGA RÁPIDA - PRODUTOS FRESCOS - QUALIDADE -
+          PEDIDO ONLINE - ENTREGA RÁPIDA - ROUPAS LINDAS E DE QUALIDADE -
         </span>
         <span>
           {" "}
-          PEDIDO ONLINE - ENTREGA RÁPIDA - PRODUTOS FRESCOS - QUALIDADE -
+          PEDIDO ONLINE - ENTREGA RÁPIDA - ROUPAS LINDAS E DE QUALIDADE -
         </span>
         <span>
           {" "}
-          PEDIDO ONLINE - ENTREGA RÁPIDA - PRODUTOS FRESCOS - QUALIDADE -
+          PEDIDO ONLINE - ENTREGA RÁPIDA - ROUPAS LINDAS E DE QUALIDADE -
         </span>
         <span>
           {" "}
-          PEDIDO ONLINE - ENTREGA RÁPIDA - PRODUTOS FRESCOS - QUALIDADE -
+          PEDIDO ONLINE - ENTREGA RÁPIDA - ROUPAS LINDAS E DE QUALIDADE -
         </span>
         <span>
           {" "}
-          PEDIDO ONLINE - ENTREGA RÁPIDA - PRODUTOS FRESCOS - QUALIDADE -
+          PEDIDO ONLINE - ENTREGA RÁPIDA - ROUPAS LINDAS E DE QUALIDADE -
         </span>
       </motion.div>
     </div>
