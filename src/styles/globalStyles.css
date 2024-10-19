@@ -32,7 +32,7 @@
     .swiper-slide {
         height: auto !important;
         display: flex !important;
-        margin-right: 20px !important;
+        margin-right: 10px !important;
     }
 
     .swiper-button-prev {

@@ -12,7 +12,7 @@ const ProductCarousel = ({ title, roupas }) => {
   return (
     <div id="produtos" className="product-carousel">
       <div className="section-title flex justify-between items-center">
-        <h2 className="font-caveat text-[30px] md:text-[50px] lg:text-[50px] pb-4 text-left text-blackNormal">
+        <h2 className="font-caveat text-[30px] md:text-[50px] lg:text-[50px] pb-2 text-left text-blackNormal">
           {title}
         </h2>
         <a href="#" className="flex items-center"></a>
@@ -45,14 +45,14 @@ const ProductCarousel = ({ title, roupas }) => {
           roupas.map(({ nome, preco, descricao, imagem }, index) => (
             <SwiperSlide
               key={index}
-              className="border border-gray-200 hover:border-gray-300 rounded-lg p-4"
+              className="border border-gray-200 hover:border-gray-300 rounded-lg p-2"
             >
-              <div className="flex flex-row p-5 items-center space-x-6 ">
-                <div className="product-info space-y-3 w-[70%]">
+              <div className="flex flex-col-reverse md:flex-row p-2 items-center space-x-2 ">
+                <div className="product-info space-y-2 w-[70%]">
                   <h3 className="font-bold lg:w-[170px] text-[14px] lg:text-xl">{nome}</h3>
                   <hr className="text-darkFadeColor" />
                   <div className="flex items-center space-x-3">
-                    <p className="product-price font-bold text-[18px] lg:text-2xl">
+                    <p className="product-price font-semibold text-[16px] lg:text-2xl">
                       R$ {preco.toFixed(2)}
                     </p>
                     <div
@@ -63,7 +63,7 @@ const ProductCarousel = ({ title, roupas }) => {
                     </div>
                   </div>
                 </div>
-                <div className="product-image md:w-full w-[80px]">
+                <div className="product-image md:w-full w-[200px]">
                   <img
                     src={imagem}
                     alt={nome}
