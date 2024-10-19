@@ -10,22 +10,21 @@ import 'react-toastify/dist/ReactToastify.css';
 const Checkout = () => {
   const navigate = useNavigate();
   const { cartItems, calculateTotal } = useContext(CartContext);
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [nome, setNome] = useState("");
+  const [telefone, setTelefone] = useState("");
 
-  const recipientPhoneNumber = "5512991912571";
+  const numeroTelefoneDestino = "5512991912571";
 
-  const generateOrderNumber = () => {
+  const gerarNumeroPedido = () => {
     return Math.floor(Math.random() * 1000000)
       .toString()
       .padStart(6, "0");
   };
 
-  const handlePhoneChange = (e) => {
-    let input = e.target.value.replace(/\D/g, ""); // Remove todos os caracteres que não sejam dígitos
-    if (input.length > 11) input = input.slice(0, 11); // Limita a 11 dígitos
+  const handleMudancaTelefone = (e) => {
+    let input = e.target.value.replace(/\D/g, "");
+    if (input.length > 11) input = input.slice(0, 11);
 
-    // Aplica a formatação de celular
     if (input.length > 6) {
       input = `(${input.slice(0, 2)}) ${input.slice(2, 7)}-${input.slice(7)}`;
     } else if (input.length > 2) {
@@ -34,49 +33,47 @@ const Checkout = () => {
       input = `(${input}`;
     }
 
-    setPhone(input);
+    setTelefone(input);
   };
 
-  const handleFinalizeOrder = () => {
-    // Verifica se o campo de telefone está completo
-    const phoneDigits = phone.replace(/\D/g, ""); // Remove a formatação para obter apenas os dígitos
+  const handleFinalizarPedido = () => {
+    const digitosTelefone = telefone.replace(/\D/g, "");
 
-    if (name && phoneDigits.length === 11) {
-      const orderNumber = generateOrderNumber();
+    if (nome && digitosTelefone.length === 11) {
+      const numeroPedido = gerarNumeroPedido();
 
-      const orderSummary = cartItems
+      const resumoPedido = cartItems
         .map(
           (item) =>
-            `${item.quantity}x ${item.name} - R$ ${(
-              parseFloat(item.price) * item.quantity
+            `${item.quantity}x ${item.nome} - R$ ${(
+              parseFloat(item.preco) * item.quantity
             ).toFixed(2)}`
         )
         .join("\n");
 
       const total = calculateTotal().toFixed(2);
-      const message = `Olá, meu nome é ${name}.\n\nAqui está o resumo do meu pedido:\n\nNúmero do Pedido: ${orderNumber};\n\n${orderSummary};\n\nTotal a pagar: R$ ${total};\n\nPor favor, entre em contato comigo pelo número ${phone}.`;
+      const mensagem = `Olá, meu nome é ${nome}.\n\nAqui está o resumo do meu pedido:\n\nNúmero do Pedido: ${numeroPedido};\n\n${resumoPedido};\n\nTotal a pagar: R$ ${total};\n\nPor favor, entre em contato comigo pelo número ${telefone}.`;
 
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappUrl = `https://wa.me/${recipientPhoneNumber}?text=${encodedMessage}`;
+      const mensagemCodificada = encodeURIComponent(mensagem);
+      const urlWhatsapp = `https://wa.me/${numeroTelefoneDestino}?text=${mensagemCodificada}`;
 
       setTimeout(() => {
-        window.open(whatsappUrl, "_blank");
+        window.open(urlWhatsapp, "_blank");
       }, 500);
 
-      setName("");
-      setPhone("");
+      setNome("");
+      setTelefone("");
       toast.success("Pedido finalizado com sucesso!");
     } else {
-      // Exibir o toast de erro
       toast.error("Por favor, preencha todos os campos corretamente.");
     }
   };
 
-  const handleClose = () => {
+  const handleFechar = () => {
     navigate("/");
   };
 
-  const handleCart = () => {
+  const handleCarrinho = () => {
     navigate("/carrinho");
   };
 
@@ -95,13 +92,13 @@ const Checkout = () => {
       </div>
       <div className="flex text-[12px] md:text-[18px] gap-2 m-2 cursor-pointer items-center">
         <FaPlus className="text-redNormal" />
-        <span onClick={handleClose}>Adicionar Produtos</span>|
-        <span onClick={handleCart}>Voltar na cesta</span>
+        <span onClick={handleFechar}>Adicionar Produtos</span>|
+        <span onClick={handleCarrinho}>Voltar na cesta</span>
       </div>
       <div className="bg-white rounded-lg shadow-md p-6">
         <ul className="space-y-4">
           {cartItems.map((item, index) => {
-            const totalPorProduto = parseFloat(item.price) * item.quantity;
+            const totalPorProduto = parseFloat(item.preco) * item.quantity;
 
             return (
               <li
@@ -111,15 +108,15 @@ const Checkout = () => {
                 <div className="flex flex-col md:flex-row items-center space-x-4 justify-between w-full">
                   <div className="flex flex-row justify-start w-full items-center gap-4">
                     <img
-                      src={item.image}
-                      alt={item.name}
+                      src={item.imagem}
+                      alt={item.nome}
                       className="w-16 h-16 object-cover rounded-md"
                     />
-                    <h3 className="text-lg font-medium">{item.name}</h3>
+                    <h3 className="text-lg font-medium">{item.nome}</h3>
                   </div>
                   <div className="flex flex-col md:flex-row items-center gap-4 justify-between">
                     <p className="text-gray-600 flex flex-row">
-                      R$ {parseFloat(item.price).toFixed(2)}{" "}
+                      R$ {parseFloat(item.preco).toFixed(2)}{" "}
                       <span className="mx-2"> x {item.quantity}</span>
                     </p>
                     <p className="text-gray-800 font-semibold">
@@ -143,8 +140,8 @@ const Checkout = () => {
             <label className="block text-gray-700">Nome</label>
             <input
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg"
             />
           </div>
@@ -152,8 +149,8 @@ const Checkout = () => {
             <label className="block text-gray-700">Celular</label>
             <input
               type="text"
-              value={phone}
-              onChange={handlePhoneChange}
+              value={telefone}
+              onChange={handleMudancaTelefone}
               max={11}
               placeholder="(XX) XXXXX-XXXX"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg"
@@ -162,7 +159,7 @@ const Checkout = () => {
         </div>
         <div className="flex justify-center">
           <button
-            onClick={handleFinalizeOrder}
+            onClick={handleFinalizarPedido}
             className="bg-green-500 text-white px-8 py-3 rounded-full hover:bg-green-600 transition-all"
           >
             Enviar Pedido

@@ -15,9 +15,9 @@ export async function fetchUsers() {
 }
 
 // Função para buscar produtos
-export async function fetchProducts() {
+export async function fetchRoupas() {
   try {
-    const response = await axios.get(`${apiUrl}/products`);
+    const response = await axios.get(`${apiUrl}/roupas`);
     return response.data;
   } catch (error) {
     console.error('Erro ao buscar produtos:', error);

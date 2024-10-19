@@ -16,7 +16,7 @@ const CartButton = ({ itemCount }) => {
         fixed bottom-6 right-6
         md:text-[40px]
         text-[30px]
-        bg-gradient-to-r from-primaryGreen via-primaryGreen to-secondaryGreen
+        bg-gradient-to-r from-red-700 via-red-700 to-red-900
         text-whiteNormal 
         rounded-full p-4 shadow-lg 
         hover:scale-110

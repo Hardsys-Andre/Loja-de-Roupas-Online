@@ -9,15 +9,15 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const handleQuantityChange = (index, newQuantity) => {
-    if (newQuantity >= 0.5) {
+    if (newQuantity >= 1) {
       updateQuantity(index, newQuantity);
     }
   };
 
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price);
-      return total + price * item.quantity;
+      const preco = parseFloat(item.preco);
+      return total + preco * item.quantity;
     }, 0);
   };
 
@@ -51,7 +51,7 @@ const Cart = () => {
         Adicionar Produtos | Fechar Cesta
       </div>
       <div className="flex text-[12px] text-redNormal justify-center">
-        Atenção, pedido mínimo de 0,5 kg ou 1 unid. por produto.
+        Atenção, pedido mínimo de 1 unidade por produto.
       </div>
       </div>
       {cartItems.length > 0 ? (
@@ -64,14 +64,14 @@ const Cart = () => {
               >
                 <div className="flex items-center space-x-4">
                   <img
-                    src={item.image}
-                    alt={item.name}
+                    src={item.imagem}
+                    alt={item.nome}
                     className="w-16 h-16 object-cover rounded-md"
                   />
                   <div>
-                    <h3 className="md:text-lg font-medium">{item.name} {item.unit}</h3>
+                    <h3 className="md:text-lg font-medium">{item.nome}</h3>
                     <p className="text-gray-600">
-                      R$ {parseFloat(item.price).toFixed(2)}
+                      R$ {parseFloat(item.preco).toFixed(2)}
                     </p>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ const Cart = () => {
                   <div className="flex flex-row items-center gap-4 mt-5">
                     <button
                       onClick={() =>
-                        handleQuantityChange(index, item.quantity - 0.5)
+                        handleQuantityChange(index, item.quantity - 1)
                       }
                       className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
                     >
@@ -88,14 +88,14 @@ const Cart = () => {
                     <span className="text-lg">{item.quantity}</span>
                     <button
                       onClick={() =>
-                        handleQuantityChange(index, item.quantity + 0.5)
+                        handleQuantityChange(index, item.quantity + 1)
                       }
                       className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
                     >
                       +
                     </button>
                     <button
-                      onClick={() => removeFromCart(item.name)}
+                      onClick={() => removeFromCart(item.nome)}
                       className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
                     >
                       Remover
@@ -103,7 +103,7 @@ const Cart = () => {
                   </div>
                   <p className="flex text-sm font-semibold justify-end w-full mt-2">
                     Total: R${" "}
-                    {(parseFloat(item.price) * item.quantity).toFixed(2)}
+                    {(parseFloat(item.preco) * item.quantity).toFixed(2)}
                   </p>
                 </div>
               </li>
