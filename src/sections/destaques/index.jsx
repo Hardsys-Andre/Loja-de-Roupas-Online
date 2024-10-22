@@ -53,7 +53,7 @@ const Destaques = () => {
             {destaques.map(({ nome, preco, imagem, descricao }, index) => (
               <div
                 key={index}
-                className="bg-whiteNormal justify-center lg:px-4 py-2 font-outfit text-[14px] lg:text-[16px] xl:text-[20px] text-black-normal rounded-lg flex-shrink-0 w-[90%] md:w-[45%] lg:w-[40%] xl:w-[30%] mx-2 select-none"
+                className="bg-whiteNormal justify-center lg:px-4 py-2 font-outfit text-[14px] lg:text-[16px] xl:text-[20px] text-black-normal rounded-lg flex-shrink-0 w-[90%] md:w-[45%] lg:w-[40%] xl:w-[35%] mx-2 select-none"
               >
                 <div className="flex flex-col xl:h-[420px] lg:flex-col p-2 items-top gap-1">
                   <div className="flex flex-col-reverse gap-1 sm:flex-row xl:w-[100%] h-[410px] sm:h-[350px]">
