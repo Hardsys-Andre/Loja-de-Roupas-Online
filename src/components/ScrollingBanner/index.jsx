@@ -25,7 +25,7 @@ const ScrollingBanner = () => {
     <div className="relative w-full overflow-hidden py-2">
       <motion.div
         animate={controls}
-        className="flex whitespace-nowrap text-xl font-bold text-whiteNormal"
+        className="flex whitespace-nowrap text-md sm:text-xl font-bold text-whiteNormal"
       >
         <span>
           {" "}
