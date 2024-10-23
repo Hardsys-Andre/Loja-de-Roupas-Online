@@ -16,6 +16,7 @@ const Destaques = () => {
   });
   const { addToCart } = useContext(CartContext);
   const [quantities, setQuantities] = useState(destaques.map(() => 1));
+  const [selectedSizes, setSelectedSizes] = useState(destaques.map(() => null));
 
   const incrementQuantity = (index) => {
     const newQuantities = [...quantities];
@@ -31,26 +32,35 @@ const Destaques = () => {
     }
   };
 
-  const handleAddToCart = (item) => {
-    addToCart(item);
+  const handleSizeSelection = (index, size) => {
+    const newSelectedSizes = [...selectedSizes];
+    newSelectedSizes[index] = size;
+    setSelectedSizes(newSelectedSizes);
+  };
+
+  const handleAddToCart = (item, index) => {
+    const tamanhoEscolhido = selectedSizes[index];
+    if (!tamanhoEscolhido) {
+      toast.error('Por favor, selecione um tamanho');
+      return;
+    }
+    addToCart({ ...item, tamanhoEscolhido }, quantities[index]);
     toast.success('Item adicionado ao carrinho');
   };
 
   return (
-    <div className="flex flex-col w-full md:w-full mt-6 pb-11 md:mt-10 lg:mt-20 items-center bg-[#482f2a]">
+    <div id="destaques" className="flex flex-col w-full md:w-full mt-6 pb-11 md:mt-10 lg:mt-20 items-center bg-[#482f2a]">
       <ToastContainer />
       <div className="bg-gradient-to-r from-[#8f6f6e] via-[#8f6f6e] to-[#482f2a] w-full font-outfit font-semibold py-2 text-whiteNormal text-center">
         <ScrollingBanner />
       </div>
       <div className="flex flex-col mt-6 md:mt-10 w-full">
-        <h2
-          className="font-caveat white-normal text-[30px] md:text-[50px] lg:text-[50px] pb-4 text-left text-whiteNormal px-4"
-        >
+        <h2 className="font-caveat white-normal text-[30px] md:text-[50px] lg:text-[50px] pb-4 text-left text-whiteNormal px-4">
           Destaques
         </h2>
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
-            {destaques.map(({ nome, preco, imagem, descricao }, index) => (
+            {destaques.map(({ nome, preco, imagem, descricao, tamanho }, index) => (
               <div
                 key={index}
                 className="bg-whiteNormal justify-center lg:px-4 py-2 font-outfit text-[14px] lg:text-[16px] xl:text-[20px] text-black-normal rounded-lg flex-shrink-0 w-[90%] md:w-[45%] lg:w-[40%] xl:w-[35%] mx-2 select-none"
@@ -72,6 +82,22 @@ const Destaques = () => {
                     </div>
                   </div>
                     <div className="flex flex-col gap-4">
+                      <div>
+                        <span className="text-sm">Tamanhos: </span>
+                        {tamanho.map((size, sizeIndex) => (
+                          <button
+                            key={sizeIndex}
+                            className={`rounded-[20px] text-sm px-2 py-1 mr-1 mb-1 inline-block focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors duration-200 ${
+                              selectedSizes[index] === size
+                                ? 'bg-green-700 text-white'
+                                : 'bg-green-200 hover:bg-green-300'
+                            }`}
+                            onClick={() => handleSizeSelection(index, size)}
+                          >
+                            {size}
+                          </button>
+                        ))}
+                      </div>
                       <hr className="text-darkFadeColor"></hr>
                       <div className="flex items-center justify-between">
                         <p className="product-price font-bold text-2xl">
@@ -102,8 +128,7 @@ const Destaques = () => {
                               preco,
                               imagem,
                               descricao,
-                              quantidade: quantities[index],
-                            })
+                            }, index)
                           }
                         >
                           <FaPlus className="text-whiteNormal" />

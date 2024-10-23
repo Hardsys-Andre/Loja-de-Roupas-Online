@@ -23,8 +23,8 @@ const ProductCarousel = ({ title, roupas }) => {
     }
   };
 
-  const handleAddToCart = (item) => {
-    addToCart(item);
+  const handleAddToCart = (item, index) => {
+    addToCart(item, quantities[index]); // Passando quantComprada
     toast.success('Item adicionado ao carrinho');
   };
 
@@ -98,8 +98,7 @@ const ProductCarousel = ({ title, roupas }) => {
                               preco,
                               imagem,
                               descricao,
-                              quantidade: quantities[index],
-                            })
+                            }, index)
                           }
                         >
                           <FaPlus className="text-whiteNormal" />

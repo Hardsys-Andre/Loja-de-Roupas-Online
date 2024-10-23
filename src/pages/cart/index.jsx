@@ -43,16 +43,16 @@ const Cart = () => {
         />
       </div>
       <div className="flex flex-col-reverse md:flex-row justify-between md:items-center">
-      <div
-        onClick={handleClose}
-        className="flex gap-2 m-2 text-[12px] md:text-[16px] cursor-pointer items-center"
-      >
-        <FaPlus className="text-redNormal" />
-        Adicionar Produtos | Fechar Cesta
-      </div>
-      <div className="flex text-[12px] text-redNormal justify-center">
-        Atenção, pedido mínimo de 1 unidade por produto.
-      </div>
+        <div
+          onClick={handleClose}
+          className="flex gap-2 m-2 text-[12px] md:text-[16px] cursor-pointer items-center"
+        >
+          <FaPlus className="text-redNormal" />
+          Adicionar Produtos | Fechar Cesta
+        </div>
+        <div className="flex text-[12px] text-redNormal justify-center">
+          Atenção, pedido mínimo de 1 unidade por produto.
+        </div>
       </div>
       {cartItems.length > 0 ? (
         <div className="bg-white rounded-lg shadow-md p-6">
@@ -70,6 +70,7 @@ const Cart = () => {
                   />
                   <div>
                     <h3 className="md:text-lg font-medium">{item.nome}</h3>
+                    <span className="text-[14px] font-semibold">Tamanho: {item.tamanhoEscolhido}</span>
                     <p className="text-gray-600">
                       R$ {parseFloat(item.preco).toFixed(2)}
                     </p>
@@ -81,7 +82,10 @@ const Cart = () => {
                       onClick={() =>
                         handleQuantityChange(index, item.quantity - 1)
                       }
-                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                      className={`bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 ${
+                        item.quantity === 1 && "opacity-50 cursor-not-allowed"
+                      }`}
+                      disabled={item.quantity === 1}
                     >
                       -
                     </button>
@@ -95,7 +99,7 @@ const Cart = () => {
                       +
                     </button>
                     <button
-                      onClick={() => removeFromCart(item.nome)}
+                      onClick={() => removeFromCart(item.nome, item.tamanhoEscolhido)}
                       className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
                     >
                       Remover

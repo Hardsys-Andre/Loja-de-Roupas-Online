@@ -9,32 +9,36 @@ export const CartProvider = ({ children }) => {
     return savedItems ? JSON.parse(savedItems) : [];
   });
 
+  // Atualiza o localStorage sempre que cartItems for alterado
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addToCart = (product) => {
+  // Adiciona produto ao carrinho ou incrementa a quantidade se o produto já existir com o mesmo tamanho
+  const addToCart = (product, quantSelecionada = 1) => {
     setCartItems((prevItems) => {
-      const existingProduct = prevItems.find(
-        (item) => item.nome === product.nome
+      const existingProductIndex = prevItems.findIndex(
+        (item) => item.nome === product.nome && item.tamanhoEscolhido === product.tamanhoEscolhido
       );
-      if (existingProduct) {
-        return prevItems.map((item) =>
-          item.nome === product.nome
-            ? { ...item, quantity: item.quantity + 1 }
+      if (existingProductIndex !== -1) {
+        return prevItems.map((item, index) =>
+          index === existingProductIndex
+            ? { ...item, quantity: item.quantity + quantSelecionada }
             : item
         );
       }
-      return [...prevItems, { ...product, quantity: 1 }];
+      return [...prevItems, { ...product, quantity: quantSelecionada }];
     });
   };
 
-  const removeFromCart = (productNome) => {
+  // Remove um produto do carrinho
+  const removeFromCart = (productNome, productTamanho) => {
     setCartItems((prevItems) =>
-      prevItems.filter((item) => item.nome !== productNome)
+      prevItems.filter((item) => !(item.nome === productNome && item.tamanhoEscolhido === productTamanho))
     );
   };
 
+  // Atualiza a quantidade de um item no carrinho
   const updateQuantity = (index, newQuantity) => {
     setCartItems((prevItems) =>
       prevItems.map((item, i) =>
@@ -43,6 +47,7 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  // Calcula o total do carrinho
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => {
       const preco = parseFloat(item.preco);
